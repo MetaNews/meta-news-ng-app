@@ -1,0 +1,108 @@
+/* ----- Arrow Box ----- */
+
+.arrow-box {
+  position: relative;
+  /* padding: 20px; */
+  width: 100px;
+  height: 100px;
+  margin-right: 0px;
+  display: inline-table;
+  /* border: 1px solid silver; */
+  margin: 1px;
+  float: left;
+  top: -15px;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 40%;
+  left: 22px;
+}
+
+.left-arrow .glyphicon {
+  color: #484848;
+}
+
+.left-arrow a:hover span {
+  color: #0099cc;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 40%;
+  left: 61px;
+}
+
+.right-arrow .glyphicon {
+  color: #484848;
+}
+
+.right-arrow a:hover span {
+  color: #ff4444;
+}
+
+.up-down-arrows {
+  position: absolute;
+  text-align: center;
+  list-style: none;
+  width: 34px;
+  left: 32px;
+  top: 20px;
+}
+
+.up-down-arrows .glyphicon {
+  color: #484848;
+}
+
+.up-down-arrows a:hover .glyphicon-chevron-up {
+  color: #00c851;
+}
+
+.up-down-arrows a:hover .glyphicon-chevron-down {
+  color: #ffbb33;
+}
+
+/* ----- Icons ----- */
+
+.veri-icon {
+  position: absolute;
+  bottom: -12px;
+  left: 8px;
+}
+
+.glyphicon.glyphicon-ok-sign {
+  font-size: 24px;
+  color: #00c851;
+}
+
+.ideo-icon {
+  position: absolute;
+  bottom: -12px;
+  right: 8px;
+}
+
+.glyphicon.glyphicon-circle-arrow-left {
+  font-size: 24px;
+  color: #0099cc;
+}
+
+.comment-icon {
+  position: absolute;
+  bottom: -12px;
+  right: 8px;
+}
+
+.glyphicon.glyphicon-comment {
+  color: #484848;
+}
+
+.info-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.glyphicon.glyphicon-info-sign {
+  font-size: 24px;
+  color: #484848;
+}

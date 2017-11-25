@@ -1,0 +1,108 @@
+.modal-div {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.modal h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-signup {
+  text-align: center;
+}
+
+.form-signup input {
+  display: inline-block;
+}
+
+#nul-inputUsername {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#nul-inputEmail {
+  border-radius: 0px;
+}
+#nul-inputPassword {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-modal {
+  margin-top: 10px;
+}
+
+.btn-close-modal {
+  float: right;
+}
+
+.modal-warning {
+  margin-top: 20px;
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}
+
+#switch-signin {
+  float: left;
+  display: inline-block;
+}
+
+#switch-signup {
+  float: left;
+  display: none;
+}
+
+#forgotpw-switch {
+  display: none;
+}
+
+#verify-resend {
+  display: none;
+  float: left;
+}
+
+#ul-inputUsername {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+#ul-inputPassword {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+#signin-div {
+  display: none;
+}
+
+#signup-div {
+  display: block;
+}
+
+#verify-code-btn {
+  margin-top: 10px;
+}
+
+#verify-div {
+  display: none;
+}
+
+#deleteuser-div {
+  text-align: center;
+}
+
+#signout-user {
+  float: left;
+}
+
+#forgotpw-div {
+  display: none;
+}
+
+.modal-footer {
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+#bottom-bar {
+  background-color: #484848;
+  height: 70px;
+  width: 100%;
+}
+
+#bottom-bar-text {
+  position: relative;
+  bottom: -35%;
+}
+
+.bright-text {
+  text-align: center;
+  color: white;
+  font-variant: small-caps;
+}

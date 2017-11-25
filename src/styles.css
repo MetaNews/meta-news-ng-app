@@ -1,0 +1,17 @@
+/*Global Styles*/
+
+body {
+  font-family: verdana;
+}
+
+.shadow-container {
+  border: 1px solid silver;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: -1px 1px DarkGray;
+  margin-bottom: 10px;
+}
+
+/*.row {*/
+  /*margin: 0;*/
+/*}*/

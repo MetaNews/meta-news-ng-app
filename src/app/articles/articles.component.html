@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-1">
+  </div>
+  <div class="col-sm-9" id="article-area">
+    <div *ngFor="let article of getArticles(1, 25)" class="shadow-container article-container">
+      <app-arrowbox></app-arrowbox>
+      <div class="article-box container-fluid">
+        <div class="article-title">
+          <a [href]="article.url">{{ article.title }}</a>
+          <hr>
+        </div>
+      </div>
+      <div class="info-box">
+        <ul class="list-inline block-list">
+          <li><a href="#">{{ article.publisher }}</a></li>
+          <li><a href="#">{{ article.author }}</a></li>
+          <li style="float:right;"><a href="article.html">0 <span class="glyphicon glyphicon-comment"></span></a>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2">
+  </div>
+</div>
