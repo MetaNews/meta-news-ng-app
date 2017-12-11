@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  filters = {
+    left: false,
+    neutral: true,
+    right: false,
+  };
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  filterLeft() {
+    this.filters.left = true;
+    this.filters.neutral = false;
+    this.filters.right = false;
   }
 
 }

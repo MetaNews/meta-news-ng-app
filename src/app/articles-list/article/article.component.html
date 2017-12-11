@@ -1,0 +1,19 @@
+<div class="shadow-container article-container">
+  <app-arrowbox
+    [(votes)]="article.votes"
+    (voteEvent)="onVote($event)"
+  ></app-arrowbox>
+  <div class="article-box container-fluid">
+    <div class="article-title">
+      <a [href]="article.url">{{ article.title }}</a>
+      <hr>
+    </div>
+  </div>
+  <div class="info-box">
+    <ul class="list-inline block-list">
+      <li><a href="#">{{ article.publisher }}</a></li>
+      <li><a href="#">{{ article.author }}</a></li>
+      <li style="float:right;"><a href="article.html">0 <span class="glyphicon glyphicon-comment"></span></a>
+    </ul>
+  </div>
+</div>

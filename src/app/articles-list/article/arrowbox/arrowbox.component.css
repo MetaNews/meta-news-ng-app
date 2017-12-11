@@ -2,25 +2,23 @@
 
 .arrow-box {
   position: relative;
-  /* padding: 20px; */
   width: 100px;
   height: 100px;
-  margin-right: 0px;
   display: inline-table;
-  /* border: 1px solid silver; */
   margin: 1px;
   float: left;
   top: -15px;
+}
+
+.glyphicon {
+  color: #484848;
+  cursor: pointer;
 }
 
 .left-arrow {
   position: absolute;
   top: 40%;
   left: 22px;
-}
-
-.left-arrow .glyphicon {
-  color: #484848;
 }
 
 .left-arrow a:hover span {
@@ -31,10 +29,6 @@
   position: absolute;
   top: 40%;
   left: 61px;
-}
-
-.right-arrow .glyphicon {
-  color: #484848;
 }
 
 .right-arrow a:hover span {
@@ -48,10 +42,6 @@
   width: 34px;
   left: 32px;
   top: 20px;
-}
-
-.up-down-arrows .glyphicon {
-  color: #484848;
 }
 
 .up-down-arrows a:hover .glyphicon-chevron-up {
@@ -106,3 +96,21 @@
   font-size: 24px;
   color: #484848;
 }
+
+/* Vote Classes */
+.left-voted {
+  color: #0099cc;
+}
+
+.up-voted {
+  color: #00c851;
+}
+
+.down-voted {
+  color: #ffbb33;
+}
+
+.right-voted {
+  color: #ff4444;
+}
+

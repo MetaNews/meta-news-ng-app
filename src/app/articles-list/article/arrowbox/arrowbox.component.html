@@ -1,0 +1,40 @@
+<div class="arrow-box">
+  <!--LeftVote Button-->
+  <div class="left-arrow">
+    <a type="button"
+       (click)="onLeftVote()">
+      <span class="glyphicon glyphicon-chevron-left" [ngClass]="{'left-voted': this.votes.isLeftVoted}"></span></a>
+  </div>
+  <div class="up-down-arrows-wrapper">
+    <ul class="list-group up-down-arrows">
+      <!--UpVote Button-->
+      <li><a type="button" (click)="onUpVote()">
+        <span class="glyphicon glyphicon-chevron-up" [ngClass]="{'up-voted': this.votes.isUpVoted}"></span>
+      </a></li>
+      <!--Quality Value-->
+      <li>{{ this.votes.quality + +this.votes.isUpVoted - +this.votes.isDownVoted }}</li>
+      <!--DownVote Button-->
+      <li><a type="button" (click)="onDownVote()">
+        <span class="glyphicon glyphicon-chevron-down" [ngClass]="{'down-voted': this.votes.isDownVoted}"></span>
+      </a></li>
+    </ul>
+  </div>
+  <!--Right Vote Button-->
+  <div class="right-arrow">
+    <a type="button"
+       (click)="onRightVote()">
+      <span class="glyphicon glyphicon-chevron-right" [ngClass]="{'right-voted': this.votes.isRightVoted}"></span></a>
+  </div>
+  <div class="veri-icon">
+    <a href="#verify"><span class="glyphicon glyphicon-ok-sign"></span></a>
+  </div>
+  <div class="ideo-icon">
+    <a href="#ideo"><span class=""></span></a>
+  </div>
+  <div class="comment-icon">
+    <a href="#comment"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+  </div>
+  <div class="info-icon">
+    <a href="#info"><span></span></a>
+  </div>
+</div>
