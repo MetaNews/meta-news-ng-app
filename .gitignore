@@ -50,3 +50,6 @@ tsconfig.json
 protractor.conf.js
 karma.conf.js
 .editorconfig
+
+# private
+src/app/authentication/pooldata.ts

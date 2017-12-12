@@ -4,7 +4,9 @@
   <div class="col-sm-9">
     <app-article
       *ngFor="let article of articles"
-      [article]="article"></app-article>
+      [article]="article"
+      (voteEvent)="onVote($event)"
+    ></app-article>
   </div>
   <div class="col-sm-2">
   </div>

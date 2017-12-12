@@ -16,20 +16,34 @@
         <!--Seperator-->
         <li id="ideo-sep"role="seperator" class="divider"></li>
         <!--Ideology Filters-->
-        <li id="menu-left"><a type="button" (click)="filterLeft()"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
-        <li id="menu-neutral" class="active"><a type="button" (click)="filterNeutral">Neutral</a></li>
-        <li id="menu-right"><a type="button" (click)="filterRight()">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        <div [hidden]="windowWidth >= minTabsWidth">
+          <li id="menu-left"
+              [ngClass]="{'active': filters.left}">
+            <a type="button"
+              (click)="filterLeft()">
+            <span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+          <li id="menu-neutral"
+              [ngClass]="{'active': filters.neutral}">
+            <a type="button"
+               (click)="filterNeutral()">
+              Neutral</a></li>
+          <li id="menu-right"
+              [ngClass]="{'active': filters.right}">
+            <a type="button"
+               (click)="filterRight()">Right
+              <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        </div>
       </ul>
     </div>
     <!--Tabs-->
-    <div class="click-tabs">
+    <div class="click-tabs" [hidden]="windowWidth < minTabsWidth">
       <ul class="nav nav-tabs navbar-left" id="ideo-tabs">
         <!--Left-->
-        <li><a type="button" (click)="filterLeft()"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+        <li [ngClass]="{'active': filters.ideology.toString() === 'LEFT'}"><a type="button" (click)="filterLeft()"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
         <!--Neutral-->
-        <li class="active"><a type="button" (click)="filterNeutral()">Neutral</a></li>
+        <li [ngClass]="{'active': filters.ideology.toString() === 'NEUTRAL'}"><a type="button" (click)="filterNeutral()">Neutral</a></li>
         <!--Right-->
-        <li><a type="button" (click)="filterRight()">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        <li [ngClass]="{'active': filters.ideology.toString() === 'RIGHT'}"><a type="button" (click)="filterRight()">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
       </ul>
     </div>
     <!--Search Bar-->
@@ -57,13 +71,14 @@
               <button id="search"
                       type="button"
                       class="btn btn-primary"
-                      ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                      (click)="onSearch()"
+                      ><span class="glyphicon glyphicon-search"></span></button>
               <!--Login Button-->
               <button id="login"
                       type="button"
                       class="btn btn-primary"
-                      data-toggle="modal"
-                      ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+                      (click)="onLogin()"
+                      ><span class="glyphicon glyphicon-user"></span></button>
             </div>
           </div>
         </div>

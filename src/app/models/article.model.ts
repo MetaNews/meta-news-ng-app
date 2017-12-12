@@ -1,6 +1,13 @@
 import {Votes} from './votes.model';
 
 export class Article {
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
   private _author: string;
   private _title: string;
   private _publisher: string;

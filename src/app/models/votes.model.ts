@@ -7,7 +7,7 @@ export class Votes {
   private _isRightVoted: boolean;
 
   constructor() {
-    this._quality = 0;
+    this._quality = Math.round(Math.random() * 99);
     this._bias = 0;
     this._isUpVoted = false;
     this._isDownVoted = false;
