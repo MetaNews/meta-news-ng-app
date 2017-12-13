@@ -1,51 +1,85 @@
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 
-const { getPoolData } = require('pooldata');
+const poolData = require('./pooldata.json');
 
 export class Authentication {
 
   /**
-   * // TODO register documentation
+   * Registers the user given the email, username, and password. Based
+   * on the given pooldata. Returns a Promise with the CognitoUser on success
+   * or the error on failure.
    *
-   * @param email
-   * @param user
-   * @param password
-   * @returns {Promise<void>}
+   * @param {string} email
+   * @param {string} user
+   * @param {string} password
+   * @returns {Promise<any>}
    */
-  static async register(email: string, user: string, password: string) {
-    const userPool = getPoolData();
+  static register(email: string, user: string, password: string) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
 
-    const attributeList = [];
+      const attributeList = [];
 
-    const dataEmail = {
-      Name: "email",
-      Value: email,
-    };
+      const dataEmail = {
+        Name: "email",
+        Value: email,
+      };
 
-    const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+      const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
-    attributeList.push(attributeEmail);
+      attributeList.push(attributeEmail);
 
-    try {
-      const res = await userPool.signUp(user, password, attributeList, null);
+      userPool.signUp(user, password, attributeList, null, (error, result) => {
+        if (error) {
+          alert(`SignUp Failure: ${error}`);
+          console.log(error);
+          return reject(error);
+        }
 
-      const cognitoUser = res.user;
-
-      return console.log(`Register success! Username is ${cognitoUser.getUserName()}`);
-    } catch (err) {
-      return console.log(`Register failure. Error code is ${err.code}`);
-    }
+        console.log(`SignUp Success: your username is ${result.user.getUsername()}`);
+        return resolve(result.user);
+      });
+    });
   }
 
   /**
-   * // TODO login documentation
+   * Logs a user in to the cognito identity service based on a string username
+   * and password. Returns session data on success and an error on failure.
    *
    * @param {string} user
    * @param {string} password
    * @returns {Promise<void>}
    */
-  static async login(user: string, password: string) {
-    // TODO login implementation
+  static login(user: string, password: string) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const userData = {
+        Username: user,
+        Pool: userPool
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      const authenticationData = {
+        Username: user,
+        Password: password,
+      };
+
+      const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+
+      cognitoUser.authenticateUser(authenticationDetails, (error, result) => {
+        if (error) {
+          console.log(`Login Failure: ${error}`);
+          alert(`Login Failure: ${error}`);
+          return reject(error);
+        }
+
+        console.log(`Login Success: ${result}`);
+        return resolve(result);
+      });
+    });
   }
 
   /**
@@ -54,8 +88,28 @@ export class Authentication {
    * @param {string} user
    * @returns {Promise<void>}
    */
-  static async resendConfirmation(user: CognitoUser) {
-    // TODO resendConfirmation implementation
+  static resendConfirmation(user) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const userData = {
+        Username: user,
+        Pool: userPool,
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      cognitoUser.resendConfirmationCode((error, result) => {
+        if (error) {
+          console.log(`ResendConfirmation Failure: ${error}`);
+          alert(`ResendConfirmation Failure: ${error}`);
+          return reject(error);
+        }
+
+        console.log(`ResendConfirmation Success: ${result}`);
+        return resolve(result);
+      });
+    });
   }
 
   /**
@@ -65,17 +119,58 @@ export class Authentication {
    * @param {string} confirmValue
    * @returns {Promise<void>}
    */
-  static async confirmRegistration(user: CognitoUser, confirmValue: string) {
-    // TODO confirmRegistration implementation
+  static confirmRegistration(user, confirmValue: string) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const userData = {
+        Username: user,
+        Pool: userPool,
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      cognitoUser.confirmRegistration(confirmValue, true, function(error, result) {
+        if (error) {
+          console.log(`ConfirmRegistratoin Failure: ${error}`);
+          alert(`ConfirmRegistratoin Failure: ${error}`);
+          return reject(error);
+        }
+
+        console.log(`ConfirmRegistration Success: ${result}`);
+        return resolve(result);
+      });
+    });
   }
 
   /**
-   * // TODO logout documentation
+   * // TODO signOut documentation
    *
    * @returns {Promise<void>}
    */
-  static async logout() {
-    // TODO logout implementation
+  static signOut() {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`Logout Failure: No User Logged In`);
+        alert(`Logout Failure: No User Logged In`);
+        return reject(new Error('No User Logged In'));
+      }
+
+      try {
+        cognitoUser.signOut();
+
+        console.log(`SignOut Success: ${cognitoUser.getUsername()} signed out`);
+        return resolve();
+      } catch (error) {
+        alert(`SignOut Failure: ${error}`);
+        console.log(`SignOut Failure: ${error}`);
+        return reject(error);
+      }
+    });
   }
 
   /**
@@ -84,8 +179,40 @@ export class Authentication {
    * @param {string} email
    * @returns {Promise<void>}
    */
-  static async updateEmail(email: string) {
-    // TODO updateEmail implementation
+  static updateEmail(email: string) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`UpdateEmail Failure: No user session found`);
+        alert(`UpdateEmail Failure: No user session found`);
+        reject(`No User Session Found`);
+      }
+
+      const attributeList = [];
+
+      const attribute = {
+        Name: 'email',
+        Value: email
+      };
+
+      attributeList.push(attribute);
+
+      const userAttribute = new AmazonCognitoIdentity.CognitoUserAttribute(attribute);
+
+      cognitoUser.updateAttributes(attributeList, (error, result) => {
+        if (error) {
+          console.log(`UpdateEmail Failure: ${error}`);
+          alert(`UpdateEmail Failure: ${error}`);
+          return reject(error);
+        }
+
+        console.log(`UpdateEmail Success: ${result}`);
+        return resolve(result);
+      });
+    });
   }
 
   /**
@@ -95,8 +222,29 @@ export class Authentication {
    * @param {string} newPassword
    * @returns {Promise<void>}
    */
-  static async updatePassword(oldPassword: string, newPassword: string) {
-    // TODO updatePassword implementation
+  static updatePassword(oldPassword: string, newPassword: string) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`UpdatePassword Failure: No User Session`);
+        alert(`UpdatePassword Failure: No User Session`);
+        return reject(`No User Session`);
+      }
+
+      cognitoUser.changePassword(oldPassword, newPassword, (error, result) => {
+        if (error) {
+          console.log(error);
+          alert(`UpdatePassword Failure: ${error}`);
+          return reject(error);
+        }
+
+        console.log(`UpdatePassword Success: ${result}`);
+        return resolve(result);
+      });
+    });
   }
 
   /**
@@ -105,8 +253,29 @@ export class Authentication {
    * @param {CognitoUser} user
    * @returns {Promise<void>}
    */
-  static async forgotPassword(user: CognitoUser) {
-    // TODO forgotPassword implementation
+  static forgotPassword(user) {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const userData = {
+        Username: user,
+        Pool: userPool
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      cognitoUser.forgotPassword({
+        onSuccess: (result) => {
+          console.log(`ForgotPassword Success: ${result}`);
+          return resolve(result);
+        },
+        onFailure: (error) => {
+          console.log(`ForgotPassword Failure: ${error}`);
+          alert(`ForgotPassword Failure: ${error}`);
+          return reject(error);
+        },
+      });
+    });
   }
 
   /**
@@ -114,8 +283,61 @@ export class Authentication {
    *
    * @returns {Promise<void>}
    */
-  static async rememberThisDevice() {
-    // TODO rememberThisDevice implementation
+  static rememberThisDevice() {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`RememberThisDevice Failure: No User Session`);
+        alert(`RememberThisDevice Failure: No User Session`);
+        return reject('No User Session');
+      }
+
+      cognitoUser.setDeviceStatusRemembered({
+        onSuccess: (result) => {
+          console.log(`RememberThisDevice Success: ${result}`);
+          return resolve(result);
+        },
+        onFailure: (error) => {
+          console.log(`RememberThisDevice Failure: ${error}`);
+          alert(`RememberThisDevice Failure: ${error}`);
+          return reject(error);
+        },
+      });
+    });
+  }
+
+  /**
+   * // TODO DoNotRememberThisDevice documentation
+   *
+   * @returns {Promise<void>}
+   */
+  static doNotRememeberThisDevice() {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`DoNotRememberThisDevice Failure: No User Session`);
+        alert(`DoNotRememberThisDevice Failure: No User Session`);
+        return reject('No User Session');
+      }
+
+      cognitoUser.setDeviceStatusNotRemembered({
+        onSuccess: (result) => {
+          console.log(`DoNotRememberThisDevice Success: ${result}`);
+          return resolve(result);
+        },
+        onFailure: (error) => {
+          console.log(`DoNotRememberThisDevice Success: ${error}`);
+          alert(`DoNotRememberThisDevice Success: ${error}`);
+          return reject(error);
+        }
+      });
+    });
   }
 
   /**
@@ -123,8 +345,30 @@ export class Authentication {
    *
    * @returns {Promise<void>}
    */
-  static async forgetThisDevice() {
-    // TODO forgetThisDevice implementation
+  static forgetThisDevice() {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log(`ForgetThisDevice Failure: No User Session`);
+        alert(`ForgetThisDevice Failure: No User Session`);
+        return reject('No User Session');
+      }
+
+      cognitoUser.forgetDevice({
+        onSuccess: (result) => {
+          console.log(`ForgetThisDevice Success: ${result}`);
+          return resolve(result);
+        },
+        onFailure: (error) => {
+          console.log(`ForgetThisDevice Success: ${error}`);
+          alert(`ForgetThisDevice Success: ${error}`);
+          return reject(error);
+        }
+      });
+    });
   }
 
   /**
@@ -132,8 +376,31 @@ export class Authentication {
    *
    * @returns {Promise<void>}
    */
-  static async deleteUser() {
-    // TODO deleteUser Implementation
+  static deleteUser() {
+    return new Promise((resolve, reject) => {
+      const userPool = new CognitoUserPool(poolData);
+
+      const cognitoUser = userPool.getCurrentUser();
+
+      if (!cognitoUser) {
+        console.log('DeleteUser Failure: No User Session');
+        alert('DeleteUser Failure: No User Session');
+        return reject('No User Session');
+      }
+
+      cognitoUser.deleteUser({
+        onSuccess: (result) => {
+          console.log(`DeleteUser Success: ${result}`);
+          return resolve(result);
+        },
+        onFailure: (error) => {
+          console.log(`DeleteUser Failure: ${error}`);
+          alert(`DeleteUser Failure: ${error}`);
+          return reject(error);
+        }
+      })
+
+    });
   }
 
   /**
@@ -142,7 +409,9 @@ export class Authentication {
    * @param {CognitoUser} user
    * @returns {Promise<void>}
    */
-  static async getUserSession(user: CognitoUser) {
+  static getUserSession(user) {
+    const userPool = new CognitoUserPool(poolData);
 
+    return userPool.getCurrentUser();
   }
 }

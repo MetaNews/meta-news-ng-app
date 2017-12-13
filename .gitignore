@@ -52,4 +52,4 @@ karma.conf.js
 .editorconfig
 
 # private
-src/app/authentication/pooldata.ts
+src/app/authentication/pooldata.json

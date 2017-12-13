@@ -1,5 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {Filter, Ideology, Method} from '../models/filter.model';
+import {Authentication} from '../authentication/authentication';
 
 @Component({
   selector: 'app-navbar',
@@ -78,6 +79,7 @@ export class NavbarComponent implements OnInit {
    * // TODO onLogin Documentation
    */
   onLogin() {
+    // TODO onLogin Implementation
   }
 
   ngOnInit() {}
