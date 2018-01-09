@@ -1,0 +1,38 @@
+#search-bar {
+  bottom: 18px;
+  display: block;
+  float: right;
+  position: absolute;
+  right: 15px;
+  margin-right: 0;
+}
+
+.input-group-btn {
+  width: inherit;
+}
+
+.navbar-form {
+  box-shadow: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-sqr {
+  border-radius: 0;
+}
+
+.btn-right {
+  border-radius: 0 4px 4px 0!important;
+}
+
+.btn-isolated {
+  border-radius: 8px!important;
+  margin-left: 20px!important;
+}
+
+.form-control {
+  width: 170px;
+  height: inherit;
+}
+

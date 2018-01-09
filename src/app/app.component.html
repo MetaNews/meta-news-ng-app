@@ -1,16 +1,3 @@
-<app-navbar
-  (filterEvent)="onFilter($event)"
-  (changePageEvent)="onChangePage($event)"
-></app-navbar>
-<div class="container-fluid" ngSwitch="">
-  <app-articles-list
-    *ngIf="page === 'articles'"
-    [articles]="articles"
-    (voteEvent)="onVote($event)"
-  ></app-articles-list>
-  <app-user-page
-    *ngIf="page === 'user'">
-  </app-user-page>
-</div>
+<app-header></app-header>
+<router-outlet></router-outlet>
 <app-footer></app-footer>
-

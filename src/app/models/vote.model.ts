@@ -1,4 +1,4 @@
-export class Votes {
+export class Vote {
   private _quality: number;
   private _bias: number;
   private _isUpVoted: boolean;
@@ -6,15 +6,19 @@ export class Votes {
   private _isLeftVoted: boolean;
   private _isRightVoted: boolean;
 
-  constructor() {
-    this._quality = Math.round(Math.random() * 99);
-    this._bias = 0;
-    this._isUpVoted = false;
-    this._isDownVoted = false;
-    this._isLeftVoted = false;
-    this._isRightVoted = false;
+  constructor(bias: number = 0,
+              isDownVoted: boolean = false,
+              isLeftVoted: boolean = false,
+              isRightVoted: boolean = false,
+              isUpVoted: boolean = false,
+              quality: number = 0) {
+    this._bias = bias;
+    this._isDownVoted = isDownVoted;
+    this._isLeftVoted = isLeftVoted;
+    this._isRightVoted = isRightVoted;
+    this._isUpVoted = isUpVoted;
+    this._quality = quality;
   }
-
 
   get quality(): number {
     return this._quality;

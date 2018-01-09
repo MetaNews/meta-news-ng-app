@@ -1,0 +1,16 @@
+<div class="dropdown navbar-left" id="main-menu" appDropdown>
+  <button type="button"
+          class="btn dropdown-toggle btn-primary"
+          data-toggle="dropdown"
+          aria-expanded="false"
+          > MetaNews <span class="caret"></span></button>
+  <ul class="dropdown-menu dropdown-menu-left navbar-left" role="menu">
+    <li routerLinkActive="active"><a routerLink="/articles/recommended">Recommended</a></li>
+    <li routerLinkActive="active"><a routerLink="/articles/popular">Popular</a></li>
+    <li routerLinkActive="active"><a routerLink="/articles/new">New</a></li>
+    <li [hidden]="this.navbarService.areTabsShowing()" role="seperator" class="divider"></li>
+    <li [hidden]="this.navbarService.areTabsShowing()" routerLinkActive="active"><a routerLink="/left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+    <li [hidden]="this.navbarService.areTabsShowing()" routerLinkActive="active"><a routerLink="/neutral">Neutral</a></li>
+    <li [hidden]="this.navbarService.areTabsShowing()" routerLinkActive="active"><a routerLink="/right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+  </ul>
+</div>

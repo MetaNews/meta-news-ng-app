@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Article } from '../../models/article.model';
-import { Votes } from '../../models/votes.model';
+import { ArticlesService } from '../articles.service';
+import { Vote } from '../../models/vote.model';
 
 @Component({
   selector: 'app-article',
@@ -10,15 +11,16 @@ import { Votes } from '../../models/votes.model';
 export class ArticleComponent implements OnInit {
   @Input() article: Article;
 
-  @Output() voteEvent = new EventEmitter<[number, Votes]>();
+  constructor(private articlesService: ArticlesService) { }
 
-  onVote(votes: Votes) {
-    this.voteEvent.emit([this.article.id, votes]);
+  ngOnInit() { }
+
+  /**
+   *
+   * @param {Vote} vote
+   */
+  onVote(vote: Vote) {
+    this.articlesService.sendVote(this.article.id, vote);
   }
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 }

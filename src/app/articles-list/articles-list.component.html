@@ -1,13 +1,14 @@
-<div class="row">
-  <div class="col-sm-1">
-  </div>
-  <div class="col-sm-9">
-    <app-article
-      *ngFor="let article of articles"
-      [article]="article"
-      (voteEvent)="onVote($event)"
-    ></app-article>
-  </div>
-  <div class="col-sm-2">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-9">
+      <app-article
+        *ngFor="let article of articles"
+        [article]="article"
+        ></app-article>
+    </div>
+    <div class="col-sm-2">
+    </div>
   </div>
 </div>

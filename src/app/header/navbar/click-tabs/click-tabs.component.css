@@ -1,0 +1,49 @@
+.nav-tabs {
+  border-bottom: none;
+  font-weight: bold;
+  font-variant: small-caps;
+  cursor: pointer;
+}
+
+.nav-tabs li a {
+  height: 40px
+}
+
+.nav-tabs li a,
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+  color :#fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.nav-tabs .open a,
+.nav-tabs .open a:hover,
+.nav-tabs .open a:focus,
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+  color: #484848;
+  background-color: Gainsboro;
+  border-color: transparent;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+  color: #484848;
+  background-color: #fff;
+  border-color: silver;
+  border-bottom-color: transparent;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 0 0 0 black;
+}
+
+#ideo-tabs {
+  position: absolute;
+  bottom: 0px;
+  left: 148px;
+}

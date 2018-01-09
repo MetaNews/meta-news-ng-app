@@ -1,0 +1,26 @@
+.navbar-brand {
+  position: relative;
+  left: 4px;
+}
+
+#top-nav button {
+  height: 34px;
+}
+
+#main-menu {
+  bottom: 0;
+  margin-right: 16px;
+  width: 120px;
+  display: block;
+}
+
+#main-menu button {
+  font-weight: bold;
+  font-variant: small-caps;
+  display: block;
+  bottom: -10px;
+}
+
+.dropdown-link:hover{
+  background-color: #ddd;
+}

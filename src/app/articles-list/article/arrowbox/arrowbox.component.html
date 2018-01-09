@@ -3,19 +3,19 @@
   <div class="left-arrow">
     <a type="button"
        (click)="onLeftVote()">
-      <span class="glyphicon glyphicon-chevron-left" [ngClass]="{'left-voted': this.votes.isLeftVoted}"></span></a>
+      <span class="glyphicon glyphicon-chevron-left" [ngClass]="{'left-voted': this.vote.isLeftVoted}"></span></a>
   </div>
   <div class="up-down-arrows-wrapper">
     <ul class="list-group up-down-arrows">
       <!--UpVote Button-->
       <li><a type="button" (click)="onUpVote()">
-        <span class="glyphicon glyphicon-chevron-up" [ngClass]="{'up-voted': this.votes.isUpVoted}"></span>
+        <span class="glyphicon glyphicon-chevron-up" [ngClass]="{'up-voted': this.vote.isUpVoted}"></span>
       </a></li>
       <!--Quality Value-->
-      <li>{{ this.votes.quality + +this.votes.isUpVoted - +this.votes.isDownVoted }}</li>
+      <li>{{ this.vote.quality + +this.vote.isUpVoted - +this.vote.isDownVoted }}</li>
       <!--DownVote Button-->
       <li><a type="button" (click)="onDownVote()">
-        <span class="glyphicon glyphicon-chevron-down" [ngClass]="{'down-voted': this.votes.isDownVoted}"></span>
+        <span class="glyphicon glyphicon-chevron-down" [ngClass]="{'down-voted': this.vote.isDownVoted}"></span>
       </a></li>
     </ul>
   </div>
@@ -23,7 +23,7 @@
   <div class="right-arrow">
     <a type="button"
        (click)="onRightVote()">
-      <span class="glyphicon glyphicon-chevron-right" [ngClass]="{'right-voted': this.votes.isRightVoted}"></span></a>
+      <span class="glyphicon glyphicon-chevron-right" [ngClass]="{'right-voted': this.vote.isRightVoted}"></span></a>
   </div>
   <div class="veri-icon">
     <a href="#verify"><span class="glyphicon glyphicon-ok-sign"></span></a>

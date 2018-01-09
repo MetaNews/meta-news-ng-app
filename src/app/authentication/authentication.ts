@@ -6,7 +6,7 @@ const poolData = require('./pooldata.json');
 export class Authentication {
 
   /**
-   * Registers the user given the email, username, and password. Based
+   * Signs in the user given the email, username, and password. Based
    * on the given pooldata. Returns a Promise with the CognitoUser on success
    * or the error on failure.
    *
@@ -32,12 +32,12 @@ export class Authentication {
 
       userPool.signUp(user, password, attributeList, null, (error, result) => {
         if (error) {
-          alert(`SignUp Failure: ${error}`);
+          alert(`Register Failure: ${error}`);
           console.log(error);
           return reject(error);
         }
 
-        console.log(`SignUp Success: your username is ${result.user.getUsername()}`);
+        console.log(`Register Success: your username is ${result.user.getUsername()}`);
         return resolve(result.user);
       });
     });
@@ -51,7 +51,7 @@ export class Authentication {
    * @param {string} password
    * @returns {Promise<void>}
    */
-  static login(user: string, password: string) {
+  static signIn(user: string, password: string) {
     return new Promise((resolve, reject) => {
       const userPool = new CognitoUserPool(poolData);
 
@@ -71,12 +71,12 @@ export class Authentication {
 
       cognitoUser.authenticateUser(authenticationDetails, (error, result) => {
         if (error) {
-          console.log(`Login Failure: ${error}`);
-          alert(`Login Failure: ${error}`);
+          console.log(`SignIn Failure: ${error}`);
+          alert(`SignIn Failure: ${error}`);
           return reject(error);
         }
 
-        console.log(`Login Success: ${result}`);
+        console.log(`SignIn Success: ${result}`);
         return resolve(result);
       });
     });
@@ -406,10 +406,9 @@ export class Authentication {
   /**
    * // TODO getUserSession documentation
    *
-   * @param {CognitoUser} user
    * @returns {Promise<void>}
    */
-  static getUserSession(user) {
+  static getUserSession() {
     const userPool = new CognitoUserPool(poolData);
 
     return userPool.getCurrentUser();

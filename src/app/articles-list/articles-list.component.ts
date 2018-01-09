@@ -1,22 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Article} from '../models/article.model';
-import {Votes} from '../models/votes.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+
+import { Article } from '../models/article.model';
+import { ArticlesService } from './articles.service';
+import { Filter } from '../models/filter.model';
 
 @Component({
   selector: 'app-articles-list',
   templateUrl: './articles-list.component.html',
-  styleUrls: ['./articles-list.component.css']
+  styleUrls: ['./articles-list.component.css'],
 })
 export class ArticlesListComponent implements OnInit {
-  @Input() articles: Article[];
+  articles: Article[];
 
-  @Output() voteEvent = new EventEmitter<[number, Votes]>();
+  constructor(private articlesService: ArticlesService, private route: ActivatedRoute) { }
 
-  constructor() {}
-
-  ngOnInit() {}
-
-  onVote(voteData) {
-    this.voteEvent.emit(voteData);
+  ngOnInit() {
+    const filter = new Filter(
+      this.route.snapshot.params['method'],
+      'neutral'
+    );
+    this.route.data.subscribe((data: Data) => {
+      this.articles = this.articlesService.getArticles();
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Votes } from '../../../models/votes.model';
+
+import { Vote } from '../../../models/vote.model';
 
 @Component({
   selector: 'app-arrowbox',
@@ -7,79 +8,79 @@ import { Votes } from '../../../models/votes.model';
   styleUrls: ['./arrowbox.component.css']
 })
 export class ArrowboxComponent implements OnInit {
-  @Input() votes: Votes;
+  @Input() vote: Vote;
 
-  @Output() voteEvent = new EventEmitter<Votes>();
+  @Output() voteEvent = new EventEmitter<Vote>();
 
   constructor() {
   }
 
   onUpVote() {
     // If neither upVoted nor downVoted
-    if (!this.votes.isUpVoted && !this.votes.isDownVoted) {
-      this.votes.isUpVoted = true;
+    if (!this.vote.isUpVoted && !this.vote.isDownVoted) {
+      this.vote.isUpVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (!this.votes.isUpVoted && this.votes.isDownVoted) {
-      this.votes.isDownVoted = false;
-      this.votes.isUpVoted = true;
+      this.voteEvent.emit(this.vote);
+    } else if (!this.vote.isUpVoted && this.vote.isDownVoted) {
+      this.vote.isDownVoted = false;
+      this.vote.isUpVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (this.votes.isUpVoted && !this.votes.isDownVoted) {
-      this.votes.isUpVoted = false;
+      this.voteEvent.emit(this.vote);
+    } else if (this.vote.isUpVoted && !this.vote.isDownVoted) {
+      this.vote.isUpVoted = false;
 
-      this.voteEvent.emit(this.votes);
+      this.voteEvent.emit(this.vote);
     }
   }
 
   onDownVote() {
-    if (!this.votes.isDownVoted && !this.votes.isUpVoted) {
-      this.votes.isDownVoted = true;
+    if (!this.vote.isDownVoted && !this.vote.isUpVoted) {
+      this.vote.isDownVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (!this.votes.isDownVoted && this.votes.isUpVoted) {
-      this.votes.isUpVoted = false;
-      this.votes.isDownVoted = true;
+      this.voteEvent.emit(this.vote);
+    } else if (!this.vote.isDownVoted && this.vote.isUpVoted) {
+      this.vote.isUpVoted = false;
+      this.vote.isDownVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (this.votes.isDownVoted && !this.votes.isUpVoted) {
-      this.votes.isDownVoted = false;
+      this.voteEvent.emit(this.vote);
+    } else if (this.vote.isDownVoted && !this.vote.isUpVoted) {
+      this.vote.isDownVoted = false;
 
-      this.voteEvent.emit(this.votes);
+      this.voteEvent.emit(this.vote);
     }
   }
 
   onLeftVote() {
-    if (!this.votes.isLeftVoted && !this.votes.isRightVoted) {
-      this.votes.isLeftVoted = true;
+    if (!this.vote.isLeftVoted && !this.vote.isRightVoted) {
+      this.vote.isLeftVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (!this.votes.isLeftVoted && this.votes.isRightVoted) {
-      this.votes.isRightVoted = false;
-      this.votes.isLeftVoted = true;
+      this.voteEvent.emit(this.vote);
+    } else if (!this.vote.isLeftVoted && this.vote.isRightVoted) {
+      this.vote.isRightVoted = false;
+      this.vote.isLeftVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (this.votes.isLeftVoted && !this.votes.isRightVoted) {
-      this.votes.isLeftVoted = false;
+      this.voteEvent.emit(this.vote);
+    } else if (this.vote.isLeftVoted && !this.vote.isRightVoted) {
+      this.vote.isLeftVoted = false;
 
-      this.voteEvent.emit(this.votes);
+      this.voteEvent.emit(this.vote);
     }
   }
 
   onRightVote() {
-    if (!this.votes.isRightVoted && !this.votes.isLeftVoted) {
-      this.votes.isRightVoted = true;
+    if (!this.vote.isRightVoted && !this.vote.isLeftVoted) {
+      this.vote.isRightVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (!this.votes.isRightVoted && this.votes.isLeftVoted) {
-      this.votes.isLeftVoted = false;
-      this.votes.isRightVoted = true;
+      this.voteEvent.emit(this.vote);
+    } else if (!this.vote.isRightVoted && this.vote.isLeftVoted) {
+      this.vote.isLeftVoted = false;
+      this.vote.isRightVoted = true;
 
-      this.voteEvent.emit(this.votes);
-    } else if (this.votes.isRightVoted && !this.votes.isLeftVoted) {
-      this.votes.isRightVoted = false;
+      this.voteEvent.emit(this.vote);
+    } else if (this.vote.isRightVoted && !this.vote.isLeftVoted) {
+      this.vote.isRightVoted = false;
 
-      this.voteEvent.emit(this.votes);
+      this.voteEvent.emit(this.vote);
     }
   }
 

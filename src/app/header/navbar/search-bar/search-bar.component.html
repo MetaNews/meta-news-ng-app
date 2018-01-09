@@ -1,0 +1,32 @@
+<div class="input-group navbar-right" id="search-bar">
+  <div class="navbar-form">
+    <div class="input-group-btn">
+      <input type="text" class="form-control" placeholder="Search">
+      <div class="btn-group" role="group">
+        <div class="btn-group" appDropdown>
+          <!--Filter Dropdown-->
+          <button type="button"
+                  class="btn btn-default btn-sqr"
+                  aria-expanded="false"
+          ><span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="#">All</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Journalists</a></li>
+            <li><a href="#">Publishers</a></li>
+          </ul>
+        </div>
+          <!--Search Button-->
+          <button type="button"
+                  class="btn btn-primary btn-right"
+                  (click)="onSearch()"
+                  ><span class="glyphicon glyphicon-search"></span></button>
+          <!--Login Button-->
+          <button type="button"
+                  class="btn btn-primary btn-isolated"
+                  (click)="onSignIn()"
+                  ><span class="glyphicon glyphicon-user"></span></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="click-tabs" [hidden]="windowWidth < minTabsWidth">
+  <ul
+    class="nav nav-tabs navbar-left"
+    id="ideo-tabs"
+    [hidden]="!this.navbarService.areTabsShowing()">
+    <li [ngClass]="{'active': this.filter ==='left'}">
+      <a type="button" (click)="onFilter('left')"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+    <li [ngClass]="{'active': this.filter ==='neutral'}">
+      <a type="button" (click)="onFilter('neutral')">Neutral</a></li>
+    <li [ngClass]="{'active': this.filter ==='right'}">
+      <a type="button" (click)="onFilter('right')">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+  </ul>
+</div>
