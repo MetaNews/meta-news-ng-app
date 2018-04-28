@@ -1,8 +1,8 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 
-import { Filter } from '../../models/filter.model';
-import {Authentication} from '../../authentication/authentication';
-import {NavbarService} from './navbar.service';
+import { Filter } from '../../../models/filter.model';
+import { Authentication } from '../../../services/authentication/authentication.service';
+import { NavbarService } from '../../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',

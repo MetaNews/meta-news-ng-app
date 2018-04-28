@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { Article } from '../models/article.model';
-import { ArticlesService } from './articles.service';
-import { Filter } from '../models/filter.model';
+import { Article } from '../../models/article.model';
+import { ArticlesService } from '../../services/articles/articles.service';
+import { Filter } from '../../models/filter.model';
 
 @Component({
   selector: 'app-articles-list',

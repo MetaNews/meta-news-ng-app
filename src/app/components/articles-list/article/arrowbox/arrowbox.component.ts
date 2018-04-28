@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Vote } from '../../../models/vote.model';
+import { Vote } from '../../../../models/vote.model';
 
 @Component({
   selector: 'app-arrowbox',

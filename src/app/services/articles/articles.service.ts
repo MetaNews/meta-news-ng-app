@@ -1,10 +1,10 @@
-import { Injectable, OnInit} from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Filter } from '../models/filter.model';
-import { Article } from '../models/article.model';
-import { Vote } from '../models/vote.model';
-import { Authentication} from '../authentication/authentication';
+import { Filter } from '../../models/filter.model';
+import { Article } from '../../models/article.model';
+import { Vote } from '../../models/vote.model';
+import { Authentication } from '../authentication/authentication.service';
 
 @Injectable()
 export class ArticlesService implements OnInit {

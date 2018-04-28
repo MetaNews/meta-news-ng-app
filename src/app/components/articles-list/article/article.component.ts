@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '../../models/article.model';
-import { ArticlesService } from '../articles.service';
-import { Vote } from '../../models/vote.model';
+import { Article } from '../../../models/article.model';
+import { ArticlesService } from '../../../services/articles/articles.service';
+import { Vote } from '../../../models/vote.model';
 
 @Component({
   selector: 'app-article',
