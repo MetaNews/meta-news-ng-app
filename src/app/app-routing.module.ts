@@ -8,11 +8,34 @@ import { SignInPageComponent } from './components/sign-in-page/sign-in-page.comp
 import { ArticlesResolver } from './services/articles/articles-resolver.service';
 
 const appRoutes: Routes = [
-  { path: 'articles/:method', component: ArticlesListComponent, resolve: {articles: ArticlesResolver }},
-  { path: 'user/home', component: UserPageComponent },
-  { path: 'user/signin', component: SignInPageComponent},
-  { path: '',   redirectTo: '/articles/popular', pathMatch: 'full' },
-  { path: '**', component: ErrorComponent },
+  {
+    // Default Page
+    path: '',
+    redirectTo: '/articles?method=popular&sort=neutral',
+    pathMatch: 'full'
+  },
+  {
+    path: 'articles:method:sort',
+    component: ArticlesListComponent,
+    resolve: {
+      articles: ArticlesResolver
+    },
+  },
+  {
+    path: 'user/home',
+    component: UserPageComponent
+  },
+  {
+    path: 'user/login',
+    component: SignInPageComponent
+  },
+  {
+    path: '**',
+    component: ErrorComponent,
+    data: {
+      message: 'Page Not Found',
+    }
+  },
 ];
 
 @NgModule({

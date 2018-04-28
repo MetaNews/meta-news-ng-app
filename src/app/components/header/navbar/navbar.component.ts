@@ -2,7 +2,7 @@ import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/co
 
 import { Filter } from '../../../models/filter.model';
 import { Authentication } from '../../../services/authentication/authentication.service';
-import { NavbarService } from '../../../services/navbar.service';
+import { NavbarService } from '../../../services/navbar/navbar.service';
 
 @Component({
   selector: 'app-navbar',
