@@ -1,20 +1,20 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Observable } from 'rxjs/Observable';
+
 import { Filter } from '../../models/filter.model';
 import { Article } from '../../models/article.model';
 import { Vote } from '../../models/vote.model';
 import { Authentication } from '../authentication/authentication.service';
+import { AppConfig } from '../../app.config';
 
 @Injectable()
-export class ArticlesService implements OnInit {
+export class ArticlesService {
 
   private articles: Article[] = [];
-  private articlesRoute: string = 'https://gi4ftaly2c.execute-api.us-east-1.amazonaws.com/dev/articles';
 
   constructor(private http: HttpClient) { }
-
-  ngOnInit() { }
 
   /**
    *
@@ -25,17 +25,22 @@ export class ArticlesService implements OnInit {
    */
   fetchArticles(page: number, size: number, filter: Filter): Promise<Article[]> {
     let articles: Article[] = [];
-    const getUrl: string = this.articlesRoute;
 
-    return this.http.get(getUrl, {
-
-    }).toPromise().then((data) => {
+    return this.getArticles().toPromise().then((data) => {
       articles = data['Items'];
       return this.setArticles(articles);
     }, (error) => {
       console.log('Failure', error);
       return error;
-    }).catch(() => { console.log('Something Went Wrong in FetchArticles') });
+    }).catch(() => { console.log('Something Went Wrong in FetchArticles'); });
+  }
+
+  /**
+   *
+   * @returns {Observable<Object>}
+   */
+  private getArticles(): Observable<Object> {
+    return this.http.get(API_URL + AppConfig.;
   }
 
   /**
@@ -57,15 +62,6 @@ export class ArticlesService implements OnInit {
     });
 
     return this.articles;
-  }
-
-  /**
-   * // TODO getArticles Documentation
-   *
-   * @returns {Article[]}
-   */
-  getArticles() {
-    return this.articles.slice();
   }
 
   /**

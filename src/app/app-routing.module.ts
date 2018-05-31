@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'articles:method:sort',
+    path: 'articles',
     component: ArticlesListComponent,
     resolve: {
       articles: ArticlesResolver

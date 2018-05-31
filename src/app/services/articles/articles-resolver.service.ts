@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Filter } from '../../models/filter.model';
 
 @Injectable()
-export class ArticlesResolver implements Resolve<Object[]>{
+export class ArticlesResolver implements Resolve<Object[]> {
   constructor(private articlesService: ArticlesService) { }
 
   resolve(): Observable<Object[]> | Promise<Object[]> | Object[] {
